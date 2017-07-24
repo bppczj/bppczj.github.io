@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/7 | X Home</title>
+  <title>ssh免密登录服务器配置示例 | X Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="08年那会，我才上大学...">
-<meta name="keywords" content="java, python, hadoop,程序猿, mac, big data, oracle">
-<meta property="og:type" content="website">
-<meta property="og:title" content="X Home">
-<meta property="og:url" content="http://yoursite.com/archives/2017/07/index.html">
+  <meta name="description" content="目的：便于管理多个服务器密钥 平台：MacOS   进入本地目录 ~/.ssh 生成rsa密钥，三次回车（不设置密码）得到id_rsa和id_ras.pub  1ssh-keygen -t rsa  上传密钥到远程服务器，例如：用户名 zchen，ip 10.0.0.0  1cat id_rsa.pub|ssh zchen@10.0.0.0 &amp;apos;cat &amp;gt;&amp;gt; .ssh/aut">
+<meta name="keywords" content="ssh,MacOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh免密登录服务器配置示例">
+<meta property="og:url" content="http://yoursite.com/2017/07/22/ssh免密登录服务器配置示例/index.html">
 <meta property="og:site_name" content="X Home">
-<meta property="og:description" content="08年那会，我才上大学...">
+<meta property="og:description" content="目的：便于管理多个服务器密钥 平台：MacOS   进入本地目录 ~/.ssh 生成rsa密钥，三次回车（不设置密码）得到id_rsa和id_ras.pub  1ssh-keygen -t rsa  上传密钥到远程服务器，例如：用户名 zchen，ip 10.0.0.0  1cat id_rsa.pub|ssh zchen@10.0.0.0 &amp;apos;cat &amp;gt;&amp;gt; .ssh/aut">
+<meta property="og:updated_time" content="2017-07-22T04:09:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="X Home">
-<meta name="twitter:description" content="08年那会，我才上大学...">
+<meta name="twitter:title" content="ssh免密登录服务器配置示例">
+<meta name="twitter:description" content="目的：便于管理多个服务器密钥 平台：MacOS   进入本地目录 ~/.ssh 生成rsa密钥，三次回车（不设置密码）得到id_rsa和id_ras.pub  1ssh-keygen -t rsa  上传密钥到远程服务器，例如：用户名 zchen，ip 10.0.0.0  1cat id_rsa.pub|ssh zchen@10.0.0.0 &amp;apos;cat &amp;gt;&amp;gt; .ssh/aut">
   
     <link rel="alternative" href="/atom.xml" title="X Home" type="application/atom+xml">
   
@@ -161,78 +162,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ssh免密登录服务器配置示例" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/24/hadoop打开和关闭服务/" class="archive-article-date">
-  	<time datetime="2017-07-24T06:08:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/hadoop打开和关闭服务/">hadoop使用</a>
+    <h1 class="article-title" itemprop="name">
+      ssh免密登录服务器配置示例
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/22/ssh免密登录服务器配置示例/" class="archive-article-date">
+        
+        <a href="/2017/07/22/ssh免密登录服务器配置示例/" class="archive-article-date">
   	<time datetime="2017-07-22T03:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/22/ssh免密登录服务器配置示例/">ssh免密登录服务器配置示例</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><strong>目的</strong>：便于管理多个服务器密钥</p>
+<p><strong>平台</strong>：MacOS</p>
+<hr>
+<ul>
+<li>进入本地目录 <code>~/.ssh</code></li>
+<li>生成rsa密钥，三次回车（不设置密码）得到<code>id_rsa</code>和<code>id_ras.pub</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
+<ul>
+<li>上传密钥到远程服务器，例如：用户名 <code>zchen</code>，ip <code>10.0.0.0</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub|ssh zchen@10.0.0.0 &apos;cat &gt;&gt; .ssh/authorized_keys&apos;</div></pre></td></tr></table></figure>
+<p>输入密码后，公钥写入服务器 <code>10.0.0.0</code></p>
+<ul>
+<li>设置 <code>config</code> 文件。将<code>id_rsa</code>和<code>id_ras.pub</code>放入目录<code>~/.ssh/config/serverName</code> (或其它位置)，用vi（或其它编辑器）编辑文件：<code>vi ~/.ssh/config</code> 。添加：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Host serverName</div><div class="line">   User root</div><div class="line">   Hostname 10.0.0.00</div><div class="line">   PreferredAuthentications publickey</div><div class="line">   IdentityFile ~/.ssh/serverName/id_rsa</div></pre></td></tr></table></figure>
+<ul>
+<li>通过命令 <code>ssh serverName</code> 即可免密登录 <code>root@10.0.0.00</code></li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -248,73 +252,113 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/22/ssh免密登录服务器配置示例/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/16/MacDown官方简介翻译/" class="archive-article-date">
-  	<time datetime="2017-07-16T13:01:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/07/24/hadoop打开和关闭服务/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          hadoop使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/16/MacDown官方简介翻译/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MacDown官方简介翻译</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/MacDown官方简介翻译/">MacDown官方简介翻译</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/13/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-13T09:37:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/13/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -337,8 +381,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
