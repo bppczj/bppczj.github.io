@@ -163,6 +163,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-yum和tomcat配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/22/yum和tomcat配置/">yum和tomcat配置</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/22/yum和tomcat配置/" class="archive-article-date">
+  	<time datetime="2018-01-22T03:52:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="配置yum"><a href="#配置yum" class="headerlink" title="配置yum"></a>配置yum</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum search java|grep jdk</div><div class="line">yum install java-1.8.0-openjdk -y #fail</div></pre></td></tr></table></figure>
+<p>下载repo配置文件（原有配置不可用）</p>
+<p><a href="http://blog.csdn.net/wang_san_shi/article/details/41748953" target="_blank" rel="external">参考链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /etc/yum.repos.d/</div><div class="line">wget http://mirrors.163.com/.help/CentOS6-Base-163.repo</div><div class="line">vi CentOS6-Base-163.repo</div></pre></td></tr></table></figure>
+<p>编辑文件，把文件里面的$releasever全部替换为版本号。</p>
+<p>在vi中替换命令: <code>:%s/$releasever/6/g</code></p>
+<p>修改：<code>enabled=1</code></p>
+<p><code>yum makecache</code> 建立缓存</p>
+<h3 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install java-1.8.0-openjdk* -y</div></pre></td></tr></table></figure>
+<h3 id="配置jdk环境变量"><a href="#配置jdk环境变量" class="headerlink" title="配置jdk环境变量"></a>配置jdk环境变量</h3><p><a href="http://www.linuxidc.com/Linux/2016-09/134941.htm" target="_blank" rel="external">参考链接</a></p>
+<p>编辑文件：<code>vi /etc/profile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64</div><div class="line">JRE_HOME=$JAVA_HOME/jre</div><div class="line">CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</div><div class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</div><div class="line">export JAVA_HOME JRE_HOME CLASS_PATH PATH</div></pre></td></tr></table></figure>
+<p><code>source /etc/profile</code> 生效</p>
+<h3 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h3><p><a href="https://www.cnblogs.com/redis/p/5988079.html" target="_blank" rel="external">参考链接</a></p>
+<p>官网下载安装包 apache-tomcat-X.Y.Z.tar.gz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar xzf apache-tomcat-X.Y.Z.tar.gz</div><div class="line">mv apache-tomcat-X.Y.Z /usr/local/tomcat  #或移到其他目录</div><div class="line">vim /usr/local/tomcat/bin/catalina.sh</div></pre></td></tr></table></figure>
+<p>编辑catalina.sh，增加如下内容.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export CATALINA_HOME=/usr/local/tomcat</div><div class="line">export CATALINA_BASE=/usr/local/tomcat</div><div class="line">export CATALINA_TMPDIR=/usr/local/tomcat/temp</div></pre></td></tr></table></figure>
+<p>建立软链接，logs放在/data/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /data/logs /home/hadoopuser/tomcat/logs</div></pre></td></tr></table></figure>
+<h3 id="启动或关闭tomcat"><a href="#启动或关闭tomcat" class="headerlink" title="启动或关闭tomcat"></a>启动或关闭tomcat</h3><p><a href="https://www.cnblogs.com/snake-hand/p/3157373.html" target="_blank" rel="external">参考链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/tomcat/bin</div><div class="line">startup.sh</div><div class="line">cd /usr/local/tomcat/bin</div><div class="line">shutdown.sh</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">yum</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/22/yum和tomcat配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-pyenvCentos治理python版本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -871,7 +970,7 @@ Header 2
 #### Header 4
 ##### Header 5
 ###### Header 6
-</code></pre><h3 id="链接和邮箱"><a href="#链接和邮箱" class="headerlink" title="链接和邮箱"></a>链接和邮箱</h3><h4 id="行内"><a href="#行内" class="headerlink" title="行内"></a>行内</h4><p>在小括号内放入email地址，这个地址就可以点击了，比如： <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x75;&#114;&#97;&#110;&#x75;&#x73;&#106;&#x72;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x75;&#114;&#97;&#110;&#x75;&#x73;&#106;&#x72;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
+</code></pre><h3 id="链接和邮箱"><a href="#链接和邮箱" class="headerlink" title="链接和邮箱"></a>链接和邮箱</h3><h4 id="行内"><a href="#行内" class="headerlink" title="行内"></a>行内</h4><p>在小括号内放入email地址，这个地址就可以点击了，比如： <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x75;&#x72;&#x61;&#110;&#117;&#115;&#106;&#114;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#x75;&#x72;&#x61;&#110;&#117;&#115;&#106;&#114;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
 <p>网址链接同样如此，比如： <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br><code>&lt;http://macdown.uranusjr.com&gt;</code>  </p>
 <p>你也许希望文本上带着链接，比如像这样：<a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a><br><code>[Macdown Website](http://macdown.uranusjr.com &quot;Title&quot;)</code> (Title可以不要)  </p>
 <h4 id="参考格式"><a href="#参考格式" class="headerlink" title="参考格式"></a>参考格式</h4><p>有时行内很长的url会导致写作时看起来很混乱，或者你希望所有的url放在一起。 </p>
@@ -1323,6 +1422,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">yum</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: ssh | X Home</title>
+  <title>yum和tomcat配置 | X Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="08年那会，我才上大学...">
-<meta name="keywords" content="java, python, hadoop,程序猿, mac, big data, oracle">
-<meta property="og:type" content="website">
-<meta property="og:title" content="X Home">
-<meta property="og:url" content="http://yoursite.com/tags/ssh/index.html">
+  <meta name="description" content="配置yum12yum search java|grep jdkyum install java-1.8.0-openjdk -y #fail 下载repo配置文件（原有配置不可用） 参考链接 123cd /etc/yum.repos.d/wget http://mirrors.163.com/.help/CentOS6-Base-163.repovi CentOS6-Base-163.repo 编">
+<meta name="keywords" content="yum,tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yum和tomcat配置">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/yum和tomcat配置/index.html">
 <meta property="og:site_name" content="X Home">
-<meta property="og:description" content="08年那会，我才上大学...">
+<meta property="og:description" content="配置yum12yum search java|grep jdkyum install java-1.8.0-openjdk -y #fail 下载repo配置文件（原有配置不可用） 参考链接 123cd /etc/yum.repos.d/wget http://mirrors.163.com/.help/CentOS6-Base-163.repovi CentOS6-Base-163.repo 编">
+<meta property="og:updated_time" content="2018-01-22T03:53:43.253Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="X Home">
-<meta name="twitter:description" content="08年那会，我才上大学...">
+<meta name="twitter:title" content="yum和tomcat配置">
+<meta name="twitter:description" content="配置yum12yum search java|grep jdkyum install java-1.8.0-openjdk -y #fail 下载repo配置文件（原有配置不可用） 参考链接 123cd /etc/yum.repos.d/wget http://mirrors.163.com/.help/CentOS6-Base-163.repovi CentOS6-Base-163.repo 编">
   
     <link rel="alternative" href="/atom.xml" title="X Home" type="application/atom+xml">
   
@@ -161,64 +162,195 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-yum和tomcat配置" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/22/ssh免密登录服务器配置示例/" class="archive-article-date">
-  	<time datetime="2017-07-22T03:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/22/ssh免密登录服务器配置示例/">ssh免密登录服务器配置示例</a>
+    <h1 class="article-title" itemprop="name">
+      yum和tomcat配置
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/22/yum和tomcat配置/" class="archive-article-date">
+  	<time datetime="2018-01-22T03:52:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="配置yum"><a href="#配置yum" class="headerlink" title="配置yum"></a>配置yum</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum search java|grep jdk</div><div class="line">yum install java-1.8.0-openjdk -y #fail</div></pre></td></tr></table></figure>
+<p>下载repo配置文件（原有配置不可用）</p>
+<p><a href="http://blog.csdn.net/wang_san_shi/article/details/41748953" target="_blank" rel="external">参考链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /etc/yum.repos.d/</div><div class="line">wget http://mirrors.163.com/.help/CentOS6-Base-163.repo</div><div class="line">vi CentOS6-Base-163.repo</div></pre></td></tr></table></figure>
+<p>编辑文件，把文件里面的$releasever全部替换为版本号。</p>
+<p>在vi中替换命令: <code>:%s/$releasever/6/g</code></p>
+<p>修改：<code>enabled=1</code></p>
+<p><code>yum makecache</code> 建立缓存</p>
+<h3 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install java-1.8.0-openjdk* -y</div></pre></td></tr></table></figure>
+<h3 id="配置jdk环境变量"><a href="#配置jdk环境变量" class="headerlink" title="配置jdk环境变量"></a>配置jdk环境变量</h3><p><a href="http://www.linuxidc.com/Linux/2016-09/134941.htm" target="_blank" rel="external">参考链接</a></p>
+<p>编辑文件：<code>vi /etc/profile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64</div><div class="line">JRE_HOME=$JAVA_HOME/jre</div><div class="line">CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</div><div class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</div><div class="line">export JAVA_HOME JRE_HOME CLASS_PATH PATH</div></pre></td></tr></table></figure>
+<p><code>source /etc/profile</code> 生效</p>
+<h3 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h3><p><a href="https://www.cnblogs.com/redis/p/5988079.html" target="_blank" rel="external">参考链接</a></p>
+<p>官网下载安装包 apache-tomcat-X.Y.Z.tar.gz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar xzf apache-tomcat-X.Y.Z.tar.gz</div><div class="line">mv apache-tomcat-X.Y.Z /usr/local/tomcat  #或移到其他目录</div><div class="line">vim /usr/local/tomcat/bin/catalina.sh</div></pre></td></tr></table></figure>
+<p>编辑catalina.sh，增加如下内容.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export CATALINA_HOME=/usr/local/tomcat</div><div class="line">export CATALINA_BASE=/usr/local/tomcat</div><div class="line">export CATALINA_TMPDIR=/usr/local/tomcat/temp</div></pre></td></tr></table></figure>
+<p>建立软链接，logs放在/data/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /data/logs /home/hadoopuser/tomcat/logs</div></pre></td></tr></table></figure>
+<h3 id="启动或关闭tomcat"><a href="#启动或关闭tomcat" class="headerlink" title="启动或关闭tomcat"></a>启动或关闭tomcat</h3><p><a href="https://www.cnblogs.com/snake-hand/p/3157373.html" target="_blank" rel="external">参考链接</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/tomcat/bin</div><div class="line">startup.sh</div><div class="line">cd /usr/local/tomcat/bin</div><div class="line">shutdown.sh</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MacOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">yum</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/22/yum和tomcat配置/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/01/21/pyenvCentos治理python版本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pyenvCentos治理python版本</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -241,9 +373,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
