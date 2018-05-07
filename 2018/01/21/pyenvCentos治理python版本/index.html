@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>pyenvCentos治理python版本 | X Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="install1git clone https://github.com/yyuu/pyenv.git ~/.pyenv 添加环境变量在 .bashrc(或者.bash_profile)加入如下内容，然后source .bashrc:  if which pyenv &amp;gt; /dev/null; then eval “$(pyenv init -)”; fi if which pyenv-vir">
+  <meta name="description" content="install1git clone https://github.com/yyuu/pyenv.git ~/.pyenv 添加环境变量在 .bashrc(或者.bash_profile)加入如下内容，然后source .bashrc:  export PYENV_ROOT=”$HOME/.pyenv”export PATH=”$PYENV_ROOT/bin:$PATH”eval “$(pyenv">
 <meta name="keywords" content="java, python, hadoop,程序猿, mac, big data, oracle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pyenvCentos治理python版本">
 <meta property="og:url" content="http://yoursite.com/2018/01/21/pyenvCentos治理python版本/index.html">
 <meta property="og:site_name" content="X Home">
-<meta property="og:description" content="install1git clone https://github.com/yyuu/pyenv.git ~/.pyenv 添加环境变量在 .bashrc(或者.bash_profile)加入如下内容，然后source .bashrc:  if which pyenv &amp;gt; /dev/null; then eval “$(pyenv init -)”; fi if which pyenv-vir">
-<meta property="og:updated_time" content="2018-01-21T08:55:05.585Z">
+<meta property="og:description" content="install1git clone https://github.com/yyuu/pyenv.git ~/.pyenv 添加环境变量在 .bashrc(或者.bash_profile)加入如下内容，然后source .bashrc:  export PYENV_ROOT=”$HOME/.pyenv”export PATH=”$PYENV_ROOT/bin:$PATH”eval “$(pyenv">
+<meta property="og:updated_time" content="2018-02-10T15:29:41.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pyenvCentos治理python版本">
-<meta name="twitter:description" content="install1git clone https://github.com/yyuu/pyenv.git ~/.pyenv 添加环境变量在 .bashrc(或者.bash_profile)加入如下内容，然后source .bashrc:  if which pyenv &amp;gt; /dev/null; then eval “$(pyenv init -)”; fi if which pyenv-vir">
+<meta name="twitter:description" content="install1git clone https://github.com/yyuu/pyenv.git ~/.pyenv 添加环境变量在 .bashrc(或者.bash_profile)加入如下内容，然后source .bashrc:  export PYENV_ROOT=”$HOME/.pyenv”export PATH=”$PYENV_ROOT/bin:$PATH”eval “$(pyenv">
   
     <link rel="alternative" href="/atom.xml" title="X Home" type="application/atom+xml">
   
@@ -185,8 +185,8 @@
         <h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/yyuu/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure>
 <h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>在 .bashrc(或者.bash_profile)加入如下内容，然后<code>source .bashrc</code>:</p>
 <blockquote>
-<p>if which pyenv &gt; /dev/null; then eval “$(pyenv init -)”; fi</p>
-<p>if which pyenv-virtualenv-init &gt; /dev/null; then eval “$(pyenv virtualenv-init -)”; fi</p>
+<p>export PYENV_ROOT=”$HOME/.pyenv”<br>export PATH=”$PYENV_ROOT/bin:$PATH”<br>eval “$(pyenv init -)”</p>
+<p>if [ -f /etc/bashrc ]; then<br>        . /etc/bashrc<br>fi<br>eval “$(pyenv virtualenv-init -)”</p>
 </blockquote>
 <h3 id="install-python-3-6-0"><a href="#install-python-3-6-0" class="headerlink" title="install python 3.6.0"></a>install python 3.6.0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install 3.6.0</div></pre></td></tr></table></figure>
 <h3 id="create-virtual-env"><a href="#create-virtual-env" class="headerlink" title="create virtual env"></a>create virtual env</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pyenv virtualenv 3.6.0 gerapy</div><div class="line">pyenv global gerapy</div></pre></td></tr></table></figure>
@@ -437,6 +437,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">groovy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">空指针异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gerapy</a>
               </li>
              
@@ -453,11 +473,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,15 +489,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">yum</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
             
             <div class="clearfix"></div>

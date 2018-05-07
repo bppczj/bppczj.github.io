@@ -163,6 +163,137 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-groovy学习整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/07/groovy学习整理/">groovy学习整理</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/07/groovy学习整理/" class="archive-article-date">
+  	<time datetime="2018-05-07T10:02:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Groovy是一种基于Java平台的面向对象语言。 Groovy 1.0于2007年1月2日发布，其中Groovy 2.4是当前的主要版本。 Groovy通过Apache License v 2.0发布。</p>
+<ul>
+<li><p><a href="https://www.w3cschool.cn/groovy/" target="_blank" rel="external">Groovy教程-w3c</a></p>
+</li>
+<li><p><a href="http://www.groovy-lang.org/" target="_blank" rel="external">Groovy官方网站</a></p>
+</li>
+<li><p><a href="http://tongyi121.iteye.com/blog/295764" target="_blank" rel="external">Groovy中的五种特殊运算符</a></p>
+</li>
+</ul>
+<h2 id="groovy的mac环境"><a href="#groovy的mac环境" class="headerlink" title="groovy的mac环境"></a>groovy的mac环境</h2><ul>
+<li><p>安装brew</p>
+</li>
+<li><p>安装groovy</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install groovy</div></pre></td></tr></table></figure>
+<ul>
+<li>查看groovy版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ groovy -v</div><div class="line">Groovy Version: 2.4.12 JVM: 1.8.0_121 Vendor: Oracle Corporation OS: Mac OS X</div></pre></td></tr></table></figure>
+<ul>
+<li>编辑groovy文件</li>
+</ul>
+<p>创建helloworld.groovy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi helloworld.groovy</div></pre></td></tr></table></figure>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">println &quot;Hello World&quot;</div></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ groovy hello.groovy</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<h2 id="特殊运算符"><a href="#特殊运算符" class="headerlink" title="特殊运算符"></a>特殊运算符</h2><ul>
+<li>Spread Operator(展开运算符) </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Person&#123;  </div><div class="line">    String name  </div><div class="line">    int age  </div><div class="line">    String toString()&#123;  </div><div class="line">        return &quot;$&#123;name&#125;:$&#123;age&#125;&quot;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">def people = [new Person(name:&apos;Lily&apos;,age:24),new Person(name:&apos;Lucy&apos;,age:18)]  </div><div class="line">println people*.toString()  </div><div class="line">===========result=============  </div><div class="line">[&quot;Lily:24&quot;, &quot;Lucy:18&quot;]</div></pre></td></tr></table></figure>
+<ul>
+<li>Elvis Operator(二元运算符) </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String name=  person.name?person.name:&apos;unknown&apos;// java的写法  </div><div class="line">def name2= person.name ?: &quot;unknown&quot; // Groovy 的写法</div></pre></td></tr></table></figure>
+<ul>
+<li>Safe Navigation/Dereference Operator(安全占位符) </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Person user  </div><div class="line">println user.name// Throws NullPointerException  </div><div class="line">// 为避免空指针异常，需要加上一个检查，java的写法如下  </div><div class="line">if (user != null) &#123;  </div><div class="line">    println &quot;Java FirstName = $&#123;user.firstName&#125;&quot;  </div><div class="line">  </div><div class="line">&#125;  </div><div class="line">// Groovy语法的写法  </div><div class="line">println &quot;Groovy FirstName = $&#123;user?.firstName&#125;&quot;  // Groovy FirstName = null</div></pre></td></tr></table></figure>
+<ul>
+<li>Method Closure Operator </li>
+</ul>
+<p>将一个方法当成一个闭包作为另一个方法的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def list = [&apos;老大&apos;,&apos;老二&apos;,&apos;老三&apos;]  </div><div class="line">//常规的遍历  </div><div class="line">  </div><div class="line">list.each&#123;  </div><div class="line">    println it  </div><div class="line">&#125;  </div><div class="line">String printName(name)&#123;  </div><div class="line">    println name  </div><div class="line">&#125;  </div><div class="line">//将printName作为参数进行遍历  </div><div class="line">list.each(this.&amp;printName)</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">groovy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">空指针异常</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/07/groovy学习整理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-yum和tomcat配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -285,8 +416,8 @@
         <h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/yyuu/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure>
 <h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>在 .bashrc(或者.bash_profile)加入如下内容，然后<code>source .bashrc</code>:</p>
 <blockquote>
-<p>if which pyenv &gt; /dev/null; then eval “$(pyenv init -)”; fi</p>
-<p>if which pyenv-virtualenv-init &gt; /dev/null; then eval “$(pyenv virtualenv-init -)”; fi</p>
+<p>export PYENV_ROOT=”$HOME/.pyenv”<br>export PATH=”$PYENV_ROOT/bin:$PATH”<br>eval “$(pyenv init -)”</p>
+<p>if [ -f /etc/bashrc ]; then<br>        . /etc/bashrc<br>fi<br>eval “$(pyenv virtualenv-init -)”</p>
 </blockquote>
 <h3 id="install-python-3-6-0"><a href="#install-python-3-6-0" class="headerlink" title="install python 3.6.0"></a>install python 3.6.0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install 3.6.0</div></pre></td></tr></table></figure>
 <h3 id="create-virtual-env"><a href="#create-virtual-env" class="headerlink" title="create virtual env"></a>create virtual env</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pyenv virtualenv 3.6.0 gerapy</div><div class="line">pyenv global gerapy</div></pre></td></tr></table></figure>
@@ -970,7 +1101,7 @@ Header 2
 #### Header 4
 ##### Header 5
 ###### Header 6
-</code></pre><h3 id="链接和邮箱"><a href="#链接和邮箱" class="headerlink" title="链接和邮箱"></a>链接和邮箱</h3><h4 id="行内"><a href="#行内" class="headerlink" title="行内"></a>行内</h4><p>在小括号内放入email地址，这个地址就可以点击了，比如： <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x75;&#x72;&#x61;&#110;&#117;&#115;&#106;&#114;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#x75;&#x72;&#x61;&#110;&#117;&#115;&#106;&#114;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
+</code></pre><h3 id="链接和邮箱"><a href="#链接和邮箱" class="headerlink" title="链接和邮箱"></a>链接和邮箱</h3><h4 id="行内"><a href="#行内" class="headerlink" title="行内"></a>行内</h4><p>在小括号内放入email地址，这个地址就可以点击了，比如： <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#x75;&#114;&#x61;&#110;&#117;&#x73;&#106;&#114;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x75;&#114;&#x61;&#110;&#117;&#x73;&#106;&#114;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
 <p>网址链接同样如此，比如： <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br><code>&lt;http://macdown.uranusjr.com&gt;</code>  </p>
 <p>你也许希望文本上带着链接，比如像这样：<a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a><br><code>[Macdown Website](http://macdown.uranusjr.com &quot;Title&quot;)</code> (Title可以不要)  </p>
 <h4 id="参考格式"><a href="#参考格式" class="headerlink" title="参考格式"></a>参考格式</h4><p>有时行内很长的url会导致写作时看起来很混乱，或者你希望所有的url放在一起。 </p>
@@ -1213,77 +1344,10 @@ print(&apos;然后至少缩进四个空格或者1个tab&apos;)
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/13/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-13T09:37:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>感谢<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>，我也发布了第一个Hello World。查看<a href="https://hexo.io/docs/" target="_blank" rel="external">文档</a> 获得更多信息。假如使用过程中有任何问题，可以在<a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">解答文档</a>找到帮助，或者也可以在<a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>上进行提问。</p>
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建新博客"><a href="#创建新博客" class="headerlink" title="创建新博客"></a>创建新博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"新博客名"</span></div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">写作</a></p>
-<h3 id="开启Hexo服务"><a href="#开启Hexo服务" class="headerlink" title="开启Hexo服务"></a>开启Hexo服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Hexo服务</a></p>
-<h3 id="生产静态页面文件"><a href="#生产静态页面文件" class="headerlink" title="生产静态页面文件"></a>生产静态页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成文件</a></p>
-<h3 id="部署到远程服务器"><a href="#部署到远程服务器" class="headerlink" title="部署到远程服务器"></a>部署到远程服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">部署</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/13/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1385,6 +1449,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">groovy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">空指针异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gerapy</a>
               </li>
              
@@ -1401,11 +1485,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1421,15 +1501,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">yum</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
             
             <div class="clearfix"></div>
