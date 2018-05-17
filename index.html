@@ -151,6 +151,191 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mac安装lightgbm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/17/mac安装lightgbm/">mac安装lightgbm</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/17/mac安装lightgbm/" class="archive-article-date">
+  	<time datetime="2018-05-17T01:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="mac安装lightgbm"><a href="#mac安装lightgbm" class="headerlink" title="mac安装lightgbm"></a>mac安装lightgbm</h2><h3 id="在OSX上使用lightGBM报错"><a href="#在OSX上使用lightGBM报错" class="headerlink" title="在OSX上使用lightGBM报错"></a>在OSX上使用lightGBM报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last): </div><div class="line">File “lgb.py”, line 12, in </div><div class="line">import lightgbm as lgb </div><div class="line">File “/python2.7/site-packages/lightgbm/init.py”,line 8, in </div><div class="line">from .basic import Booster, Dataset </div><div class="line">File “/python2.7/site-packages/lightgbm/basic.py”, line 32, in </div><div class="line">_LIB = _load_lib() </div><div class="line">File “/python2.7/site-packages/lightgbm/basic.py”, line 27, in _load_lib </div><div class="line">lib = ctypes.cdll.LoadLibrary(lib_path[0]) </div><div class="line">File “/python/2.7.14/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ctypes/init.py”, line 444, in LoadLibrary </div><div class="line">return self._dlltype(name) </div><div class="line">File “/python/2.7.14/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ctypes/init.py”, line 366, in init </div><div class="line">self._handle = _dlopen(self._name, mode) </div><div class="line">OSError: dlopen(/lib/python2.7/site-packages/lightgbm/lib_lightgbm.so, 6): Library not loaded: /usr/local/opt/gcc/lib/gcc/7/libgomp.1.dylib </div><div class="line">Referenced from: /lib/python2.7/site-packages/lightgbm/lib_lightgbm.so </div><div class="line">Reason: image not found</div></pre></td></tr></table></figure>
+<ul>
+<li><p>原因：LightGBM编译依赖OpenMP，Apple Clang不支持</p>
+</li>
+<li><p>解决方法：</p>
+</li>
+</ul>
+<p>Build LightGBM in Mac:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">brew install cmake</div><div class="line">brew install gcc</div><div class="line"></div><div class="line">git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM</div><div class="line">export CXX=g++-8 CC=gcc-8</div><div class="line">mkdir build ; cd build</div><div class="line">cmake ..</div><div class="line">make -j4</div></pre></td></tr></table></figure>
+<p>Then install:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ../python-packages  </div><div class="line">sudo python setup.py install --precompile</div></pre></td></tr></table></figure>
+<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ul>
+<li><p><a href="https://blog.csdn.net/Jiaach/article/details/79456067" target="_blank" rel="external">解决 macOS LightGBM OSError报错 Library not loaded</a></p>
+</li>
+<li><p><a href="https://stackoverflow.com/questions/44937698/lightgbm-oserror-library-not-loaded" target="_blank" rel="external">Lightgbm OSError, Library not loaded
+</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">lightgbm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/17/mac安装lightgbm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/07/hello-world/">Hello World</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/07/hello-world/" class="archive-article-date">
+  	<time datetime="2018-05-07T14:03:08.692Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感谢<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>，我也发布了第一个Hello World。查看<a href="https://hexo.io/docs/" target="_blank" rel="external">文档</a> 获得更多信息。假如使用过程中有任何问题，可以在<a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">解答文档</a>找到帮助，或者也可以在<a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>上进行提问。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建新博客"><a href="#创建新博客" class="headerlink" title="创建新博客"></a>创建新博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"新博客名"</span></div></pre></td></tr></table></figure>
+<p>更多信息: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">写作</a></p>
+<h3 id="开启Hexo服务"><a href="#开启Hexo服务" class="headerlink" title="开启Hexo服务"></a>开启Hexo服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>更多信息: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Hexo服务</a></p>
+<h3 id="生产静态页面文件"><a href="#生产静态页面文件" class="headerlink" title="生产静态页面文件"></a>生产静态页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成文件</a></p>
+<h3 id="部署到远程服务器"><a href="#部署到远程服务器" class="headerlink" title="部署到远程服务器"></a>部署到远程服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>更多信息: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">部署</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/07/hello-world/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-groovy学习整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -667,15 +852,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">pyenv</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">python版本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mac os</a>
         		</li>
       		
 		</ul>
@@ -968,415 +1153,6 @@
 
 
   
-    <article id="post-ssh免密登录服务器配置示例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/22/ssh免密登录服务器配置示例/">ssh免密登录服务器配置示例</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/22/ssh免密登录服务器配置示例/" class="archive-article-date">
-  	<time datetime="2017-07-22T03:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p><strong>目的</strong>：便于管理多个服务器密钥</p>
-<p><strong>平台</strong>：MacOS</p>
-<hr>
-<ul>
-<li>进入本地目录 <code>~/.ssh</code></li>
-<li>生成rsa密钥，三次回车（不设置密码）得到<code>id_rsa</code>和<code>id_ras.pub</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
-<ul>
-<li>上传密钥到远程服务器，例如：用户名 <code>zchen</code>，ip <code>10.0.0.0</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub|ssh zchen@10.0.0.0 &apos;cat &gt;&gt; .ssh/authorized_keys&apos;</div></pre></td></tr></table></figure>
-<p>输入密码后，公钥写入服务器 <code>10.0.0.0</code></p>
-<ul>
-<li>设置 <code>config</code> 文件。将<code>id_rsa</code>和<code>id_ras.pub</code>放入目录<code>~/.ssh/config/serverName</code> (或其它位置)，用vi（或其它编辑器）编辑文件：<code>vi ~/.ssh/config</code> 。添加：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Host serverName</div><div class="line">   User root</div><div class="line">   Hostname 10.0.0.00</div><div class="line">   PreferredAuthentications publickey</div><div class="line">   IdentityFile ~/.ssh/serverName/id_rsa</div></pre></td></tr></table></figure>
-<ul>
-<li>通过命令 <code>ssh serverName</code> 即可免密登录 <code>root@10.0.0.00</code></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/22/ssh免密登录服务器配置示例/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MacDown官方简介翻译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/16/MacDown官方简介翻译/">MacDown官方简介翻译</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/16/MacDown官方简介翻译/" class="archive-article-date">
-  	<time datetime="2017-07-16T13:01:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://macdown.uranusjr.com/static/images/logo-160.png" alt="MacDown logo"></p>
-<p>大家好! 我是 <strong>MacDown</strong>, OS X平台运行的Markdown开源编辑器。</p>
-<p>下面进行MacDown的介绍。（翻译不好敬请见谅）</p>
-<h2 id="Markdown-和-我"><a href="#Markdown-和-我" class="headerlink" title="Markdown 和 我"></a>Markdown 和 我</h2><p><strong>Markdown</strong> 是由John Gruber开发的一种文本格式编辑语法，目标在于提供一种更易于阅读和编辑文档的方式。原始的Markdown语法可以从<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">这里</a>获得。</p>
-<p><strong>MacDown</strong> 被开发作为一个简单易用的Markdown编辑器，可以将Markdown文档内容实时转变成HTML，并将它展示在预览界面。</p>
-<p><img src="/2017/07/16/MacDown官方简介翻译/view.png" alt="MacDown Screenshot"></p>
-<p>我支持所有的原始Markdown语法，但同时我还支持更多！许多非标准的语法可以通过 <a href="#markdown面板"><strong>Markdown</strong> 偏好设置面板</a> 打开或关闭。</p>
-<p>你可以指定额外的HTML构造选项，通过 <a href="#rendering面板"><strong>Rendering</strong> 偏好设置面板</a>.</p>
-<p>你可以个性化设置编辑器窗口，通过 <a href="#editor面板"><strong>Editor</strong> 偏好设置面板</a>:</p>
-<p>你可以指定其它各种设置，通过 <a href="#general面板"><strong>General</strong> 偏好设置面板</a>.</p>
-<h2 id="基础内容"><a href="#基础内容" class="headerlink" title="基础内容"></a>基础内容</h2><p>在我们进行语法讲解以及介绍我的功能之前，我将先行介绍markdown基础。假如你已经知道markdown，而且你希望直接跳到我能够做的有趣的事情，我建议你跳到 <a href="#markdown面板"><strong>Markdown</strong> 偏好设置面板</a> 部分。那我们开始吧。  </p>
-<h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><p>强制换行可以通过加入两个空格在行末尾。（此处Macdown可实现，本站不支持…）</p>
-<ul>
-<li><p>This two-line bullet<br>won’t break</p>
-</li>
-<li><p>This two-line bullet<br>will break</p>
-</li>
-</ul>
-<p>以下是代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">* This two-line bullet </div><div class="line">won&apos;t break</div><div class="line"></div><div class="line">* This two-line bullet  </div><div class="line">will break</div></pre></td></tr></table></figure>
-<h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><p><strong>粗体</strong>: <code>**粗体**</code> or <code>__粗体__</code> (Command-B)<br><em>斜体</em>: <code>*斜体*</code> or <code>_斜体_</code> (Command-I)</p>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><pre><code>Header 1
-========
-
-Header 2
---------
-</code></pre><p>或者</p>
-<pre><code># Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
-</code></pre><h3 id="链接和邮箱"><a href="#链接和邮箱" class="headerlink" title="链接和邮箱"></a>链接和邮箱</h3><h4 id="行内"><a href="#行内" class="headerlink" title="行内"></a>行内</h4><p>在小括号内放入email地址，这个地址就可以点击了，比如： <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x75;&#114;&#97;&#110;&#117;&#115;&#106;&#114;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x75;&#114;&#97;&#110;&#117;&#115;&#106;&#114;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
-<p>网址链接同样如此，比如： <a href="http://macdown.uranusjr.com" target="_blank" rel="external">http://macdown.uranusjr.com</a><br><code>&lt;http://macdown.uranusjr.com&gt;</code>  </p>
-<p>你也许希望文本上带着链接，比如像这样：<a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">Macdown Website</a><br><code>[Macdown Website](http://macdown.uranusjr.com &quot;Title&quot;)</code> (Title可以不要)  </p>
-<h4 id="参考格式"><a href="#参考格式" class="headerlink" title="参考格式"></a>参考格式</h4><p>有时行内很长的url会导致写作时看起来很混乱，或者你希望所有的url放在一起。 </p>
-<p>可以将 <a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="external">链接</a> <code>[链接][唯一的_id]</code> 放在文中的任何其它地方：<br><code>[arbitrary_id]: http://macdown.uranusjr.com &quot;Title&quot;</code></p>
-<p>加入链接的文本自身就是一个好的id，你可以这样使用：<a href="http://macdown.uranusjr.com" target="_blank" rel="external">比如这样</a> <code>[比如这样][]</code>, 然后讲它放在文中的任何其它地方：<br><code>[比如这样]: http://macdown.uranusjr.com</code>  </p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><h4 id="行内-1"><a href="#行内-1" class="headerlink" title="行内"></a>行内</h4><p><code>![Alt Image Text](path/or/url/to.jpg &quot;Optional Title&quot;)</code></p>
-<h4 id="参考格式-1"><a href="#参考格式-1" class="headerlink" title="参考格式"></a>参考格式</h4><p><code>![Alt Image Text][image-id]</code><br>图片链接放在其它行：<br><code>[image-id]: path/or/url/to.jpg &quot;Optional Title&quot;</code><br><strong>备注</strong>：<code>Alt Image Text</code>为标题，<code>()</code>内为本地路径或网络链接，本地与markdown文件(.md)同一路径下文件可写为<code>目录／文件名</code>或<code>文件名</code></p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul>
-<li>列表必须先用一个空白行间隔（或者使用间隔符）</li>
-<li>无序号的列表由 <code>*</code> 开始</li>
-</ul>
-<ul>
-<li><code>-</code> 也可以<ul>
-<li>缩进可以得到嵌套的列表<ol>
-<li>有序号的列表同样支持。</li>
-<li>每一行的格式 (数字-点-空格) 类似 <code>1.</code></li>
-<li>不管你用的是什么数字，我都会将这些列表按顺序排列。</li>
-<li>所以你可以想每一行都用 <code>1.</code> 开始，然后我会将它排好序。</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<p>以下是代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* 列表必须先用一个空白行间隔（或者使用间隔符）</div><div class="line">* 无序号的列表由 `*` 开始</div><div class="line">- `-` 也可以</div><div class="line">	* 缩进可以得到嵌套的列表</div><div class="line">		1. 有序号的列表同样支持。</div><div class="line">		2. 每一行的格式 (数字-点-空格) 类似 `1. `</div><div class="line">		42. 不管你用的是什么数字，我都会将这些列表按顺序排列。</div><div class="line">		1. 所以你可能想每一行都用 `1.` 开始，然后我会将它排好序。</div></pre></td></tr></table></figure>
-<h3 id="整段引用"><a href="#整段引用" class="headerlink" title="整段引用"></a>整段引用</h3><blockquote>
-<p>尖括号 <code>&gt;</code> 可以用于整段引用。<br>理论上不需要每一行都用 <code>&gt;</code> 开始，只要段与段之间没有留有空行。<br>尽管看起来有点丑</p>
-<blockquote>
-<p>段引用是可以嵌套的  </p>
-<blockquote>
-<p>多个层级</p>
-</blockquote>
-</blockquote>
-<p>多数段Markdown语法在段内引用是适用的</p>
-<ul>
-<li>列表</li>
-<li>[链接][对应的唯一id]</li>
-<li>等等.</li>
-</ul>
-</blockquote>
-<p>以下是代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; 尖括号 `&gt;` 可以用于整段引用。  </div><div class="line">理论上不需要每一行都用 `&gt;` 开始，只要段与段之间没有留有空行。 </div><div class="line">&gt; 尽管看起来有点丑</div><div class="line">&gt; &gt; 段引用是可以嵌套的  </div><div class="line">&gt; &gt; &gt; 多个层级</div><div class="line">&gt;</div><div class="line">&gt; 多数段Markdown语法在段内引用是适用的</div><div class="line">&gt;</div><div class="line">&gt; * 列表</div><div class="line">&gt; * [链接][对应的唯一id]</div><div class="line">&gt; * 等等.</div></pre></td></tr></table></figure>
-<h3 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h3><p><code>行内代码</code> 可以通过前后加入重音符实现：<br><code>`行内代码` </code></p>
-<p>假如你的 <code>代码有 `重音符` </code> 需要体现出来，你可以使用双重音符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">``代码有 `重音符` ``</div></pre></td></tr></table></figure></p>
-<p>（注意最后一组重音符前的空格）</p>
-<h3 id="整段代码"><a href="#整段代码" class="headerlink" title="整段代码"></a>整段代码</h3><p>假如你缩进至少四个空格或者一个tab，我将会内容展示成一个代码段落。</p>
-<pre><code>print(&apos;这是整段代码&apos;)
-print(&apos;代码块要先用一个空行隔开&apos;)
-print(&apos;然后至少缩进四个空格或者1个tab&apos;)
-    print(&apos;嵌套无特殊意义&apos;)
-</code></pre><p>另外还有一种东东称呼为 <a href="#栅栏代码块">栅栏代码段</a> 后续将会提到。</p>
-<h3 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h3><p>假如你在一行内键入三个 <code>***</code> 或者 <code>---</code> , 我将会显示一条水平线。</p>
-<hr>
-<h2 id="Markdown偏好设置面板"><a href="#Markdown偏好设置面板" class="headerlink" title=" Markdown偏好设置面板"></a><a name="markdown面板"></a> Markdown偏好设置面板</h2><p>这是我解析markdown到html的相关偏好设置。<br><img src="http://d.pr/i/RQEi+" alt="Markdown preferences pane"></p>
-<h3 id="文本格式"><a href="#文本格式" class="headerlink" title="文本格式"></a>文本格式</h3><p><strong><em>Smartypants</em></strong> 拓展可以根据文章上下文将文中的引用  (<code>&quot;</code> 和 <code>&#39;</code>) 自动转换成 typographer’s quotes (<code>“</code>, <code>”</code>, <code>‘</code>, 和 <code>’</code>) 。Quote 和 Smartypants 语法不兼容。假如你将两者都打开，Quote 优先起作用。</p>
-<h3 id="段落格式"><a href="#段落格式" class="headerlink" title="段落格式"></a>段落格式</h3><h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><p>这是一个表格：</p>
-<table>
-<thead>
-<tr>
-<th>First Header</th>
-<th>Second Header</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Content Cell</td>
-<td>Content Cell</td>
-</tr>
-<tr>
-<td>Content Cell</td>
-<td>Content Cell</td>
-</tr>
-</tbody>
-</table>
-<p>对齐表格内容可以用以下语法，比如像这样：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">左对齐</th>
-<th style="text-align:center">居中</th>
-<th style="text-align:right">右对齐</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">col 3 is</td>
-<td style="text-align:center">some wordy text</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td style="text-align:left">col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-<tr>
-<td style="text-align:left">zebra stripes</td>
-<td style="text-align:center">are neat</td>
-<td style="text-align:right">$1</td>
-</tr>
-</tbody>
-</table>
-<p>最左边和右边的竖线 (<code>|</code>) 只是为了美观, 可以省略。空格同样无实际用途。对齐只依赖于 <code>:</code> 标记。  </p>
-<p>表格代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">|      左对齐    |          居中    |     右对齐     |</div><div class="line">|:------------- |:---------------:| -------------:|</div><div class="line">| col 3 is      | some wordy text |         $1600 |</div><div class="line">| col 2 is      | centered        |           $12 |</div><div class="line">| zebra stripes | are neat        |            $1 |</div></pre></td></tr></table></figure>
-<h4 id="栅栏代码块"><a href="#栅栏代码块" class="headerlink" title="栅栏代码块"></a><a name="fenced-code-block">栅栏代码块</a></h4><p>这是一个栅栏代码块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(&apos;Hello world!&apos;)</div></pre></td></tr></table></figure>
-<p>你也可以使用波浪符 (<code>~</code>) 代替 (<code>` </code>):</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">foo = （<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>，<span class="number">4</span>）</div><div class="line">print(<span class="string">'Hello world!'</span>)</div></pre></td></tr></table></figure>
-<p>您还可以加入一个可选的程序语言名称到第一行末尾，假如你在 <strong><em>Enable highlighting in code blocks</em></strong> 选项中勾选了。这是勾选后的样子：</p>
-<p><img src="http://d.pr/i/9HM6+" alt="Syntax highlighting example"></p>
-<p>假设你所选的语言不受支持，请看 <a href="http://macdown.uranusjr.com/features/" target="_blank" rel="external">官网的相关部分</a> 以获得支持的程序语言列表.</p>
-<h3 id="行内格式"><a href="#行内格式" class="headerlink" title="行内格式"></a>行内格式</h3><p>以下是一系列支持的行内格式（部分）:</p>
-<table>
-<thead>
-<tr>
-<th>Option name</th>
-<th>Markup</th>
-<th>Result if enabled</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Intra-word emphasis</td>
-<td>So A*maz*ing</td>
-<td>So A<em>maz</em>ing</td>
-<td></td>
-</tr>
-<tr>
-<td>Strikethrough</td>
-<td>~~Much wow~~</td>
-<td><del>Much wow</del></td>
-<td></td>
-</tr>
-<tr>
-<td>Underline</td>
-<td>_So doge_</td>
-<td><u>So doge</u></td>
-<td></td>
-</tr>
-<tr>
-<td>Quote</td>
-<td>\”Such editor\”</td>
-<td><q>Such editor</q></td>
-<td></td>
-</tr>
-<tr>
-<td>Highlight</td>
-<td>\==So good\==</td>
-<td><mark>So good</mark></td>
-<td></td>
-</tr>
-<tr>
-<td>Superscript</td>
-<td>hoge\^(fuga)</td>
-<td>hoge<sup>fuga</sup></td>
-<td></td>
-</tr>
-<tr>
-<td>Autolink</td>
-<td><a href="http://t.co" target="_blank" rel="external">http://t.co</a></td>
-<td><a href="http://t.co" target="_blank" rel="external">http://t.co</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Footnotes （此处不支持）</td>
-<td>[\^4] and [\^4]:</td>
-<td>[^4] and footnote 4</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>[^4]: 你不需要用数字。采用不重复的标记如 <code>[^footy note4]</code> 和 <code>[^footy note4]:</code> 同样可以. 但它们将会 <em>转化成</em> 数字脚注. 同样，不需要将脚注排列顺序，我将会把顺序排列好，使得它们与正文的顺序相同。你甚至可以将脚注内容放在你引用它的附近位置。然后在文件的末尾以常规的脚注形式展现。 </p>
-<h2 id="Rendering偏好设置面板"><a href="#Rendering偏好设置面板" class="headerlink" title="Rendering偏好设置面板"></a><a name="rendering面板"></a>Rendering偏好设置面板</h2><p>这是与在预览框转化和解析markdown内容的设置。<br><img src="http://d.pr/i/rT4d+" alt="Rendering preferences pane"></p>
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><p>你可以选择不同的css文件去转化你的html。你甚至可以自定义或者定制你个人的css文件。</p>
-<h3 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h3><p>在栅栏代码块部分，你已经看到我如何用语法进行高亮标记。查阅 <a href="#fenced-code-block">栅栏代码块</a> 部分假如你尚未阅读。此外你也可以选择不同的主题进行语法高亮。</p>
-<h3 id="输入数学公式的语法"><a href="#输入数学公式的语法" class="headerlink" title="输入数学公式的语法"></a>输入数学公式的语法</h3><p>我还可以将文本转化为数学公式。<a href="需要网络连接。">^math</a> I can do inline math like this: \( 1 + 1 \) or this (in MathML): <math><mn>1</mn><mo>+</mo><mn>1</mn></math>, and block math:</p>
-<p>\[<br>    A^T_S = B<br>\]</p>
-<p>or (in MathML)</p>
-<math display="block"><br>    <msubsup><mi>A</mi> <mi>S</mi> <mi>T</mi></msubsup><br>    <mo>=</mo><br>    <mi>B</mi><br></math>
-
-<p>（此处不支持）</p>
-<h3 id="任务列表语法"><a href="#任务列表语法" class="headerlink" title="任务列表语法"></a>任务列表语法</h3><ol>
-<li>[x] 我可以实现勾选框列表语法<ul>
-<li>[x] 支持嵌套</li>
-<li>[x] 支持顺序 <em>和</em> 非顺序列表</li>
-</ul>
-</li>
-<li>[ ] 在html窗口不支持勾选框</li>
-</ol>
-<h3 id="Jekyll-front-matter"><a href="#Jekyll-front-matter" class="headerlink" title="Jekyll front-matter"></a>Jekyll front-matter</h3><p>你愿意的话，我还可以将 Jekyll 说明文字展示在一个表格中。确保将说明文字放在文件的最开始位置，然后以 <code>---</code> 符号隔开。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: &quot;Macdown is my friend&quot;</div><div class="line">date: 2014-06-06 20:00:00</div><div class="line">---</div></pre></td></tr></table></figure>
-<h3 id="新行输入"><a href="#新行输入" class="headerlink" title="新行输入"></a>新行输入</h3><p>通常你需要在行结束的时候敲入两个空格和一个新行，以得到一个行间隔。如果你希望直接获得一个新行，可以通过偏好设置实现。不过，这可能导致其它软件打开的时候显示效果发生变化。</p>
-<h2 id="General偏好设置面板"><a href="#General偏好设置面板" class="headerlink" title=" General偏好设置面板"></a><a name="general面板"></a> General偏好设置面板</h2><p>这是与程序行为相关的偏好设置。   </p>
-<p><img src="http://d.pr/i/rvwu+" alt="General preferences pane"></p>
-<p>可以设置：是否确保我开启的是否有打开一个文件；是否在你输入的时候持续更新预览窗口，或者在你输入 <code>command-R</code> 再更新；是否将编辑窗口放在右边；否则可以看到你输入的文字数量； </p>
-<h2 id="Editor偏好设置面板"><a href="#Editor偏好设置面板" class="headerlink" title=" Editor偏好设置面板"></a><a name="editor面板"></a> Editor偏好设置面板</h2><p>与编辑窗口相关的偏好设置。  </p>
-<p><img src="http://d.pr/i/6OL5+" alt="Editor preferences pane"></p>
-<h3 id="风格"><a href="#风格" class="headerlink" title="风格"></a>风格</h3><p>Macdown提供语法高亮. 你可以编辑基础字体和颜色主题。假如不知道从何开始，你可以选择默认的主题(向Chen Luo致敬，<a href="http://mouapp.com" target="_blank" rel="external">Mou</a>的开发者)。</p>
-<p>你同样可以编辑，或者加入其它新的主题。点击 <strong><em>Reveal</em></strong> 按钮，就可以实现。不过记得要使用正确的文件拓展名 (<code>.styles</code>)。</p>
-<p>我提供了自动补充和其它功能以简化你的编辑过程。假如你不喜欢这些功能，可以选择将它们关掉。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MacDown</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/16/MacDown官方简介翻译/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1490,26 +1266,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">groovy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">空指针异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gerapy</a>
               </li>
              
@@ -1526,6 +1282,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">groovy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">空指针异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centos</a>
               </li>
              
@@ -1534,11 +1318,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python版本</a>
+                <a href="javascript:void(0)" class="js-tag color4">lightgbm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mac os</a>
+                <a href="javascript:void(0)" class="js-tag color4">python版本</a>
               </li>
              
               <li class="article-tag-list-item">
