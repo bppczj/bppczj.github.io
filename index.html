@@ -151,6 +151,110 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ai-qq" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/23/ai-qq/">ai.qq</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/23/ai-qq/" class="archive-article-date">
+  	<time datetime="2018-05-23T14:16:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SDK下载"><a href="#SDK下载" class="headerlink" title="SDK下载"></a>SDK下载</h2><ul>
+<li>打开<a href="http://ai.qq.com/doc/sdk.shtml" target="_blank" rel="external">下载地址</a>，如下图所示，点击python SDK下载</li>
+</ul>
+<p><img src="/2018/05/23/ai-qq/fig1.png" alt="sdk"></p>
+<ul>
+<li>解压后结构如下所示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">|____py_aiplat_demo</div><div class="line">| |____demo</div><div class="line">| | |____test_nlp_texttrans.py</div><div class="line">| | |______init__.py</div><div class="line">| | |____test_aai_wxasrs.py</div><div class="line">| | |____test_ocr_generalocr.py</div><div class="line">| |____SDK</div><div class="line">| | |____apiutil.py</div><div class="line">| |____data</div><div class="line">| | |____wxasrs.mp3</div><div class="line">| | |____generalocr.jpg</div></pre></td></tr></table></figure>
+<p>或如下图：</p>
+<p><img src="/2018/05/23/ai-qq/fig2.png" alt="sdk"></p>
+<ul>
+<li>获取AppID和AppKey</li>
+</ul>
+<p>进入<a href="http://ai.qq.com/doc/index.shtml" target="_blank" rel="external">ai.qq首页</a>上方右侧控制台注册账户，使用qq扫描二维码登录</p>
+<p><img src="/2018/05/23/ai-qq/fig5.png" alt="sdk"></p>
+<p>创建应用</p>
+<p><img src="/2018/05/23/ai-qq/fig3.png" alt="sdk"></p>
+<p>查看应用详情</p>
+<p><img src="/2018/05/23/ai-qq/fig4.png" alt="sdk"></p>
+<ul>
+<li>下载python 2.7 相关的包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">## apiutil.py 所需的包</div><div class="line">pip install hashlib</div><div class="line">pip install urllib</div><div class="line">pip install urllib2</div><div class="line">pip install base64</div><div class="line">pip install json</div><div class="line">pip install time</div></pre></td></tr></table></figure>
+<ul>
+<li>编辑<code>test_nlp_texttrans.py</code>的<code>app_key</code>和<code>app_id</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#-*- coding: UTF-8 -*-</div><div class="line">import sys</div><div class="line">sys.path.append(&apos;../SDK&apos;)  </div><div class="line">import optparse</div><div class="line">import time</div><div class="line">import apiutil</div><div class="line">import json</div><div class="line"></div><div class="line"># 填写申请到的app_key</div><div class="line">app_key = &apos;R1G0MDVJivUfUNol&apos;</div><div class="line"># 填写申请到的app_id</div><div class="line">app_id = &apos;1106927300&apos;</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    str_text = &apos;今天天气怎么样&apos;</div><div class="line">    type = 0</div><div class="line">    ai_obj = apiutil.AiPlat(app_id, app_key)</div><div class="line"></div><div class="line">    print &apos;----------------------SEND REQ----------------------&apos;</div><div class="line">    rsp = ai_obj.getNlpTextTrans(str_text, type)</div><div class="line">    if rsp[&apos;ret&apos;] == 0:</div><div class="line">        print json.dumps(rsp, encoding=&quot;UTF-8&quot;, ensure_ascii=False, sort_keys=False, indent=4)</div><div class="line">        print &apos;----------------------API SUCC----------------------&apos;</div><div class="line">    else:</div><div class="line">        print json.dumps(rsp, encoding=&quot;UTF-8&quot;, ensure_ascii=False, sort_keys=False, indent=4)</div><div class="line">        # print rsp</div><div class="line">        print &apos;----------------------API FAIL----------------------&apos;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">AI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">tencent</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/23/ai-qq/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mac安装lightgbm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -171,7 +275,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="mac安装lightgbm"><a href="#mac安装lightgbm" class="headerlink" title="mac安装lightgbm"></a>mac安装lightgbm</h2><h3 id="在OSX上使用lightGBM报错"><a href="#在OSX上使用lightGBM报错" class="headerlink" title="在OSX上使用lightGBM报错"></a>在OSX上使用lightGBM报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last): </div><div class="line">File “lgb.py”, line 12, in </div><div class="line">import lightgbm as lgb </div><div class="line">File “/python2.7/site-packages/lightgbm/init.py”,line 8, in </div><div class="line">from .basic import Booster, Dataset </div><div class="line">File “/python2.7/site-packages/lightgbm/basic.py”, line 32, in </div><div class="line">_LIB = _load_lib() </div><div class="line">File “/python2.7/site-packages/lightgbm/basic.py”, line 27, in _load_lib </div><div class="line">lib = ctypes.cdll.LoadLibrary(lib_path[0]) </div><div class="line">File “/python/2.7.14/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ctypes/init.py”, line 444, in LoadLibrary </div><div class="line">return self._dlltype(name) </div><div class="line">File “/python/2.7.14/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ctypes/init.py”, line 366, in init </div><div class="line">self._handle = _dlopen(self._name, mode) </div><div class="line">OSError: dlopen(/lib/python2.7/site-packages/lightgbm/lib_lightgbm.so, 6): Library not loaded: /usr/local/opt/gcc/lib/gcc/7/libgomp.1.dylib </div><div class="line">Referenced from: /lib/python2.7/site-packages/lightgbm/lib_lightgbm.so </div><div class="line">Reason: image not found</div></pre></td></tr></table></figure>
+        <h3 id="在OSX上使用lightGBM报错"><a href="#在OSX上使用lightGBM报错" class="headerlink" title="在OSX上使用lightGBM报错"></a>在OSX上使用lightGBM报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last): </div><div class="line">File “lgb.py”, line 12, in </div><div class="line">import lightgbm as lgb </div><div class="line">File “/python2.7/site-packages/lightgbm/init.py”,line 8, in </div><div class="line">from .basic import Booster, Dataset </div><div class="line">File “/python2.7/site-packages/lightgbm/basic.py”, line 32, in </div><div class="line">_LIB = _load_lib() </div><div class="line">File “/python2.7/site-packages/lightgbm/basic.py”, line 27, in _load_lib </div><div class="line">lib = ctypes.cdll.LoadLibrary(lib_path[0]) </div><div class="line">File “/python/2.7.14/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ctypes/init.py”, line 444, in LoadLibrary </div><div class="line">return self._dlltype(name) </div><div class="line">File “/python/2.7.14/Frameworks/Python.framework/Versions/2.7/lib/python2.7/ctypes/init.py”, line 366, in init </div><div class="line">self._handle = _dlopen(self._name, mode) </div><div class="line">OSError: dlopen(/lib/python2.7/site-packages/lightgbm/lib_lightgbm.so, 6): Library not loaded: /usr/local/opt/gcc/lib/gcc/7/libgomp.1.dylib </div><div class="line">Referenced from: /lib/python2.7/site-packages/lightgbm/lib_lightgbm.so </div><div class="line">Reason: image not found</div></pre></td></tr></table></figure>
 <ul>
 <li><p>原因：LightGBM编译依赖OpenMP，Apple Clang不支持</p>
 </li>
@@ -1064,95 +1168,6 @@
 
 
   
-    <article id="post-hadoop打开和关闭服务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/24/hadoop打开和关闭服务/">hadoop打开和关闭服务</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/24/hadoop打开和关闭服务/" class="archive-article-date">
-  	<time datetime="2017-07-24T06:08:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>启动hadoop服务（安装目录：<code>~/apps/bin/hadoop</code>）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/apps/bin/hadoop/sbin/start-all.sh</div></pre></td></tr></table></figure>
-<ul>
-<li>查看开启的相关服务</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">6774 NodeManager</div><div class="line">6375 NameNode</div><div class="line">6571 SecondaryNameNode</div><div class="line">6686 ResourceManager</div><div class="line">6862 Jps</div><div class="line">6463 DataNode</div></pre></td></tr></table></figure>
-<ul>
-<li>关闭服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/apps/bin/hadoop/sbin/stop-all.sh</div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/24/hadoop打开和关闭服务/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1250,19 +1265,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MacDown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Homebrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacDown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1279,14 +1294,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1310,15 +1317,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">tencent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">lightgbm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centos</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">lightgbm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1330,15 +1353,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">文学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">yum</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文学</a>
               </li>
             
             <div class="clearfix"></div>
