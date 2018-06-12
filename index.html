@@ -151,6 +151,173 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ELK搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/11/ELK搭建/">ELK搭建</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/11/ELK搭建/" class="archive-article-date">
+  	<time datetime="2018-06-11T00:50:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h2><ul>
+<li>下载解压</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.tar.gz</div><div class="line">tar xzf elasticsearch-6.2.4.tar.gz</div><div class="line">cd elasticsearch-6.2.4</div></pre></td></tr></table></figure>
+<ul>
+<li>编辑配置文件 <code>vi config/elasticsearch.yml</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 增加内容</div><div class="line">network.host: 0.0.0.0</div><div class="line">http.port: 9200</div></pre></td></tr></table></figure>
+<ul>
+<li><p>启动 <code>bin/elasticsearch</code></p>
+</li>
+<li><p>打开另一个terminal 访问localhost：9200来验证</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -X GET http://localhost:9200</div></pre></td></tr></table></figure>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot; : &quot;MhEuzVB&quot;,</div><div class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</div><div class="line">  &quot;cluster_uuid&quot; : &quot;XVlSETuIQY2xEhzVlLFSbQ&quot;,</div><div class="line">  &quot;version&quot; : &#123;</div><div class="line">    &quot;number&quot; : &quot;6.2.4&quot;,</div><div class="line">    &quot;build_hash&quot; : &quot;ccec39f&quot;,</div><div class="line">    &quot;build_date&quot; : &quot;2018-04-12T20:37:28.497551Z&quot;,</div><div class="line">    &quot;build_snapshot&quot; : false,</div><div class="line">    &quot;lucene_version&quot; : &quot;7.2.1&quot;,</div><div class="line">    &quot;minimum_wire_compatibility_version&quot; : &quot;5.6.0&quot;,</div><div class="line">    &quot;minimum_index_compatibility_version&quot; : &quot;5.0.0&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>安装head插件</li>
+</ul>
+<p>途经1：安装失败（版本问题）</p>
+<p><code>bin/elasticsearch-plugin -install mobz/elasticsearch-head</code> </p>
+<p>途径2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##环境已安装npm和nodejs</div><div class="line">git clone git://github.com/mobz/elasticsearch-head.git</div><div class="line">cd elasticsearch-head</div><div class="line">npm install</div><div class="line">npm run start</div></pre></td></tr></table></figure>
+<p>如果想查询集群健康信息，那么需要在elasticsearch配置文件中授权 <code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 增加内容</div><div class="line">http.cors.enabled: true                                    </div><div class="line">http.cors.allow-origin: &quot;*&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>x-pack安全框架可设置账户和密码访问权限（暂未安装）</li>
+</ul>
+<p>参考链接： </p>
+<ul>
+<li><p><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="external">https://github.com/mobz/elasticsearch-head</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/aubin/p/8018081.html" target="_blank" rel="external">https://www.cnblogs.com/aubin/p/8018081.html</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/lh2420124680/article/details/75529384" target="_blank" rel="external">x-pack插件</a></p>
+</li>
+</ul>
+<h2 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h2><ul>
+<li>下载解压</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/logstash/logstash-6.2.4.tar.gz</div><div class="line">tar xzf logstash-6.2.4.tar.gz</div><div class="line">cd logstash-6.2.4</div></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件 <code>vi config/mysqltoes.conf</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">## 增加内容 从本地mysql数据库导入一张表</div><div class="line"> input &#123;</div><div class="line">   stdin &#123; &#125;</div><div class="line">   jdbc &#123;</div><div class="line">        jdbc_connection_string =&gt; &quot;jdbc:mysql://localhost:3306/python&quot;</div><div class="line">        jdbc_user =&gt; &quot;root&quot;</div><div class="line">        jdbc_password =&gt; &quot;root&quot;</div><div class="line">        jdbc_driver_library =&gt; &quot;/Users/z.chen/.m2/repository/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar&quot;</div><div class="line">        jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</div><div class="line">        jdbc_paging_enabled =&gt; &quot;true&quot;</div><div class="line">        jdbc_page_size =&gt; &quot;50000&quot;</div><div class="line">        statement =&gt; &quot;SELECT * FROM lianjiabak&quot;</div><div class="line">        schedule =&gt; &quot;* * * * *&quot;</div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> output &#123;</div><div class="line">   stdout &#123;</div><div class="line">        codec =&gt; json_lines</div><div class="line">   &#125;</div><div class="line">   elasticsearch &#123;</div><div class="line">        hosts =&gt; &quot;localhost:9200&quot;</div><div class="line">        index =&gt; &quot;id&quot;</div><div class="line">        document_type =&gt; &quot;%&#123;type&#125;&quot;</div><div class="line">        document_id =&gt; &quot;%&#123;id&#125;&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>安装jdbc插件 </li>
+</ul>
+<p><code>bin/logstash-plugin install logstash-input-jdbc</code></p>
+<ul>
+<li>启动 <code>bin/logstash -f config/mysqltoes.conf</code></li>
+</ul>
+<p>此时通过elasticsearch-head前端界面 <code>http://localhost:9100/</code> 可以看到导入的数据</p>
+<p><img src="/2018/06/11/ELK搭建/fig1.png" alt="fig1"></p>
+<p><img src="/2018/06/11/ELK搭建/fig2.png" alt="fig1"></p>
+<p>参考链接：</p>
+<p>[1] <a href="https://github.com/logstash-plugins/logstash-input-jdbc" target="_blank" rel="external">https://github.com/logstash-plugins/logstash-input-jdbc</a></p>
+<p>[2] <a href="https://www.cnblogs.com/leeolevis/p/ELK-ElasticSearch-Logstash-Mysql-NetCore.html" target="_blank" rel="external">https://www.cnblogs.com/leeolevis/p/ELK-ElasticSearch-Logstash-Mysql-NetCore.html</a></p>
+<p>[3] <a href="https://www.cnblogs.com/csts/p/6120644.html" target="_blank" rel="external">https://www.cnblogs.com/csts/p/6120644.html</a></p>
+<p>[4] <a href="https://blog.csdn.net/opera95/article/details/78664695" target="_blank" rel="external">同步多张表</a></p>
+<h2 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h2><ul>
+<li>下载解压</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## Mac版本</div><div class="line">wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-darwin-x86_64.tar.gz</div><div class="line">tar xzf kibana-6.2.4-darwin-x86_64.tar.gz</div><div class="line">cd kibana-6.2.4-darwin-x86_64</div></pre></td></tr></table></figure>
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kibana</div></pre></td></tr></table></figure>
+<ul>
+<li>打开前端页面 <code>http://localhost:5601/</code> 进行数据检索和作图</li>
+</ul>
+<p>参考链接：</p>
+<p>[1] <a href="https://www.elastic.co/cn/downloads/kibana" target="_blank" rel="external">https://www.elastic.co/cn/downloads/kibana</a></p>
+<p>[2] <a href="https://www.cnblogs.com/yincheng/p/logstash.html" target="_blank" rel="external">logstash日志分析的配置和使用</a></p>
+<p>[3] <a href="https://www.cnblogs.com/lyh421/p/7206403.html#_label6" target="_blank" rel="external">2017.7.18 linux下ELK环境搭建</a></p>
+<h2 id="后续问题"><a href="#后续问题" class="headerlink" title="后续问题"></a>后续问题</h2><ul>
+<li><p>数据实时同步问题</p>
+</li>
+<li><p>es中索引如何建立问题</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">elasticsearch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">logstash</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kibana</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/11/ELK搭建/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-macos访达加入cdto快速打开terminal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1104,89 +1271,6 @@
 
 
   
-    <article id="post-未来简史" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/11/未来简史/">未来简史</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/11/未来简史/" class="archive-article-date">
-  	<time datetime="2017-08-11T01:05:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="阅读摘录"><a href="#阅读摘录" class="headerlink" title="阅读摘录"></a>阅读摘录</h3><blockquote>
-<ul>
-<li><p>这正是历史的展开方式。人类编织出一张意义的网，并全然相信它，但这张网迟早都会拆散，直到我们回头一看，实在无法想象当时怎么可能有人真心相信这样的事。</p>
-</li>
-<li><p>朝鲜与韩国之所以如此不同，并不是因为平壤居民和韩国居民基因不同，也不是因为北边气候较冷，山较多，而是因为南北双方相信的是截然不同的两套故事。</p>
-</li>
-<li><p>到了21世纪，虚拟想象有可能成为世界上最强大的力量，甚至超越自然选择。</p>
-</li>
-</ul>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/11/未来简史/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1284,11 +1368,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Homebrew</a>
+                <a href="javascript:void(0)" class="js-tag color4">elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">logstash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kibana</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Homebrew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1324,6 +1420,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">groovy</a>
               </li>
              
@@ -1333,14 +1437,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">空指针异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">

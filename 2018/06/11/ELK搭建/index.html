@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/8 | X Home</title>
+  <title>ELK搭建 | X Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Lost and Found">
-<meta name="keywords" content="java, python, hadoop, 程序猿, Mac, big data, scala, oracle">
-<meta property="og:type" content="website">
-<meta property="og:title" content="X Home">
-<meta property="og:url" content="http://yoursite.com/archives/2017/08/index.html">
+  <meta name="description" content="elasticsearch 下载解压  123wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.tar.gztar xzf elasticsearch-6.2.4.tar.gzcd elasticsearch-6.2.4  编辑配置文件 vi config/elasticsearch.yml">
+<meta name="keywords" content="elasticsearch,logstash,kibana,Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK搭建">
+<meta property="og:url" content="http://yoursite.com/2018/06/11/ELK搭建/index.html">
 <meta property="og:site_name" content="X Home">
-<meta property="og:description" content="Lost and Found">
+<meta property="og:description" content="elasticsearch 下载解压  123wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.tar.gztar xzf elasticsearch-6.2.4.tar.gzcd elasticsearch-6.2.4  编辑配置文件 vi config/elasticsearch.yml">
+<meta property="og:image" content="http://yoursite.com/2018/06/11/ELK搭建/fig1.png">
+<meta property="og:image" content="http://yoursite.com/2018/06/11/ELK搭建/fig2.png">
+<meta property="og:updated_time" content="2018-06-12T05:37:08.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="X Home">
-<meta name="twitter:description" content="Lost and Found">
+<meta name="twitter:title" content="ELK搭建">
+<meta name="twitter:description" content="elasticsearch 下载解压  123wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.tar.gztar xzf elasticsearch-6.2.4.tar.gzcd elasticsearch-6.2.4  编辑配置文件 vi config/elasticsearch.yml">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/11/ELK搭建/fig1.png">
   
     <link rel="alternative" href="/atom.xml" title="X Home" type="application/atom+xml">
   
@@ -149,60 +153,283 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ELK搭建" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/11/未来简史/" class="archive-article-date">
-  	<time datetime="2017-08-11T01:05:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/11/未来简史/">未来简史</a>
+    <h1 class="article-title" itemprop="name">
+      ELK搭建
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/11/ELK搭建/" class="archive-article-date">
+  	<time datetime="2018-06-11T00:50:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="elasticsearch"><a href="#elasticsearch" class="headerlink" title="elasticsearch"></a>elasticsearch</h2><ul>
+<li>下载解压</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.tar.gz</div><div class="line">tar xzf elasticsearch-6.2.4.tar.gz</div><div class="line">cd elasticsearch-6.2.4</div></pre></td></tr></table></figure>
+<ul>
+<li>编辑配置文件 <code>vi config/elasticsearch.yml</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 增加内容</div><div class="line">network.host: 0.0.0.0</div><div class="line">http.port: 9200</div></pre></td></tr></table></figure>
+<ul>
+<li><p>启动 <code>bin/elasticsearch</code></p>
+</li>
+<li><p>打开另一个terminal 访问localhost：9200来验证</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -X GET http://localhost:9200</div></pre></td></tr></table></figure>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot; : &quot;MhEuzVB&quot;,</div><div class="line">  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,</div><div class="line">  &quot;cluster_uuid&quot; : &quot;XVlSETuIQY2xEhzVlLFSbQ&quot;,</div><div class="line">  &quot;version&quot; : &#123;</div><div class="line">    &quot;number&quot; : &quot;6.2.4&quot;,</div><div class="line">    &quot;build_hash&quot; : &quot;ccec39f&quot;,</div><div class="line">    &quot;build_date&quot; : &quot;2018-04-12T20:37:28.497551Z&quot;,</div><div class="line">    &quot;build_snapshot&quot; : false,</div><div class="line">    &quot;lucene_version&quot; : &quot;7.2.1&quot;,</div><div class="line">    &quot;minimum_wire_compatibility_version&quot; : &quot;5.6.0&quot;,</div><div class="line">    &quot;minimum_index_compatibility_version&quot; : &quot;5.0.0&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>安装head插件</li>
+</ul>
+<p>途经1：安装失败（版本问题）</p>
+<p><code>bin/elasticsearch-plugin -install mobz/elasticsearch-head</code> </p>
+<p>途径2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">##环境已安装npm和nodejs</div><div class="line">git clone git://github.com/mobz/elasticsearch-head.git</div><div class="line">cd elasticsearch-head</div><div class="line">npm install</div><div class="line">npm run start</div></pre></td></tr></table></figure>
+<p>如果想查询集群健康信息，那么需要在elasticsearch配置文件中授权 <code>vim /etc/elasticsearch/elasticsearch.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 增加内容</div><div class="line">http.cors.enabled: true                                    </div><div class="line">http.cors.allow-origin: &quot;*&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>x-pack安全框架可设置账户和密码访问权限（暂未安装）</li>
+</ul>
+<p>参考链接： </p>
+<ul>
+<li><p><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="external">https://github.com/mobz/elasticsearch-head</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/aubin/p/8018081.html" target="_blank" rel="external">https://www.cnblogs.com/aubin/p/8018081.html</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/lh2420124680/article/details/75529384" target="_blank" rel="external">x-pack插件</a></p>
+</li>
+</ul>
+<h2 id="logstash"><a href="#logstash" class="headerlink" title="logstash"></a>logstash</h2><ul>
+<li>下载解压</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://artifacts.elastic.co/downloads/logstash/logstash-6.2.4.tar.gz</div><div class="line">tar xzf logstash-6.2.4.tar.gz</div><div class="line">cd logstash-6.2.4</div></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件 <code>vi config/mysqltoes.conf</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">## 增加内容 从本地mysql数据库导入一张表</div><div class="line"> input &#123;</div><div class="line">   stdin &#123; &#125;</div><div class="line">   jdbc &#123;</div><div class="line">        jdbc_connection_string =&gt; &quot;jdbc:mysql://localhost:3306/python&quot;</div><div class="line">        jdbc_user =&gt; &quot;root&quot;</div><div class="line">        jdbc_password =&gt; &quot;root&quot;</div><div class="line">        jdbc_driver_library =&gt; &quot;/Users/z.chen/.m2/repository/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar&quot;</div><div class="line">        jdbc_driver_class =&gt; &quot;com.mysql.jdbc.Driver&quot;</div><div class="line">        jdbc_paging_enabled =&gt; &quot;true&quot;</div><div class="line">        jdbc_page_size =&gt; &quot;50000&quot;</div><div class="line">        statement =&gt; &quot;SELECT * FROM lianjiabak&quot;</div><div class="line">        schedule =&gt; &quot;* * * * *&quot;</div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> output &#123;</div><div class="line">   stdout &#123;</div><div class="line">        codec =&gt; json_lines</div><div class="line">   &#125;</div><div class="line">   elasticsearch &#123;</div><div class="line">        hosts =&gt; &quot;localhost:9200&quot;</div><div class="line">        index =&gt; &quot;id&quot;</div><div class="line">        document_type =&gt; &quot;%&#123;type&#125;&quot;</div><div class="line">        document_id =&gt; &quot;%&#123;id&#125;&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>安装jdbc插件 </li>
+</ul>
+<p><code>bin/logstash-plugin install logstash-input-jdbc</code></p>
+<ul>
+<li>启动 <code>bin/logstash -f config/mysqltoes.conf</code></li>
+</ul>
+<p>此时通过elasticsearch-head前端界面 <code>http://localhost:9100/</code> 可以看到导入的数据</p>
+<p><img src="/2018/06/11/ELK搭建/fig1.png" alt="fig1"></p>
+<p><img src="/2018/06/11/ELK搭建/fig2.png" alt="fig1"></p>
+<p>参考链接：</p>
+<p>[1] <a href="https://github.com/logstash-plugins/logstash-input-jdbc" target="_blank" rel="external">https://github.com/logstash-plugins/logstash-input-jdbc</a></p>
+<p>[2] <a href="https://www.cnblogs.com/leeolevis/p/ELK-ElasticSearch-Logstash-Mysql-NetCore.html" target="_blank" rel="external">https://www.cnblogs.com/leeolevis/p/ELK-ElasticSearch-Logstash-Mysql-NetCore.html</a></p>
+<p>[3] <a href="https://www.cnblogs.com/csts/p/6120644.html" target="_blank" rel="external">https://www.cnblogs.com/csts/p/6120644.html</a></p>
+<p>[4] <a href="https://blog.csdn.net/opera95/article/details/78664695" target="_blank" rel="external">同步多张表</a></p>
+<h2 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h2><ul>
+<li>下载解压</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## Mac版本</div><div class="line">wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-darwin-x86_64.tar.gz</div><div class="line">tar xzf kibana-6.2.4-darwin-x86_64.tar.gz</div><div class="line">cd kibana-6.2.4-darwin-x86_64</div></pre></td></tr></table></figure>
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kibana</div></pre></td></tr></table></figure>
+<ul>
+<li>打开前端页面 <code>http://localhost:5601/</code> 进行数据检索和作图</li>
+</ul>
+<p>参考链接：</p>
+<p>[1] <a href="https://www.elastic.co/cn/downloads/kibana" target="_blank" rel="external">https://www.elastic.co/cn/downloads/kibana</a></p>
+<p>[2] <a href="https://www.cnblogs.com/yincheng/p/logstash.html" target="_blank" rel="external">logstash日志分析的配置和使用</a></p>
+<p>[3] <a href="https://www.cnblogs.com/lyh421/p/7206403.html#_label6" target="_blank" rel="external">2017.7.18 linux下ELK环境搭建</a></p>
+<h2 id="后续问题"><a href="#后续问题" class="headerlink" title="后续问题"></a>后续问题</h2><ul>
+<li><p>数据实时同步问题</p>
+</li>
+<li><p>es中索引如何建立问题</p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文学</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">elasticsearch</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">logstash</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kibana</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/06/11/ELK搭建/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/06/08/macos访达加入cdto快速打开terminal/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">macos访达加入cdto快速打开terminal</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ELK搭建" data-title="ELK搭建" data-url="http://yoursite.com/2018/06/11/ELK搭建/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -225,8 +452,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
